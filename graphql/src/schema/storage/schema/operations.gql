@@ -1,0 +1,10 @@
+type Mutation {
+    Storage_createUploadURL( input: InputStorage_CreateURL ): Storage_URL,
+    Storage_createDownloadURL( input: InputStorage_CreateURL ): Storage_URL,
+    Storage_createBucket( input: InputStorage_CreateBucket ): Boolean
+
+}
+
+type Query {
+    Storage_query( dummy: Boolean ): Boolean
+}

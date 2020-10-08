@@ -1,0 +1,65 @@
+version: '3'
+services:
+  ############### Application containers ###############
+
+  apollo_minio_example_graphql_server:
+    image: apollo_minio_example_graphql_server
+    build: 
+      context: ./graphql 
+      dockerfile: Dockerfile
+    expose:
+      - 8080
+    ports:
+      - 81:8080
+    volumes:
+      - ./graphql/src:/usr/src/app/src
+      - ./graphql/config:/usr/src/app/config
+    networks:
+      apollo-minio-example:
+        aliases:
+          - graphql_server
+  
+  apollo_minio_example_microservice_storage:
+    image: apollo_minio_example_microservice_storage
+    build: 
+      context: ./service
+      dockerfile: Dockerfile
+    expose:
+      - 8080
+    ports:
+      - 82:8080
+    volumes:
+      - ./service/src:/usr/src/app/src
+      - ./service/config:/usr/src/app/config
+    networks:
+      apollo-minio-example:
+        aliases:
+          - storage_service
+  
+  ############### End ###############
+
+  ############### Support containers ###############
+
+  apollo_minio_example:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./minio/.minio/data:/export
+      - ./minio/.minio/config:/root/.minio
+    environment:
+      - "MINIO_ACCESS_KEY=foobar"
+      - "MINIO_SECRET_KEY=foobarfoobarfoobar"
+      - "MINIO_HTTP_TRACE=/dev/stdout"
+    command: server /export
+    networks:
+      apollo-minio-example:
+        aliases:
+          - minio
+
+  ############### End ###############
+
+networks:
+  apollo-minio-example:
+    external:
+      name: apollo-minio-example

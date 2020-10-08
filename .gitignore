@@ -1,0 +1,13 @@
+graphql/node_modules/
+graphql/dist/
+
+graphql/*.log
+
+service/node_modules/
+service/dist/
+
+service/yarn.lock
+service/package-lock.json
+service/*.log
+
+minio/

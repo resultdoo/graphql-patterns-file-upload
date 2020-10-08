@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "5162fbcc-6036-4d94-ae7a-f92951045899",
+		"name": "Apollo Minio Example",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create bucket",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"bucketId\": \"test\"\n}"
+				},
+				"url": {
+					"raw": "localhost:82/bucket",
+					"host": [
+						"localhost"
+					],
+					"port": "82",
+					"path": [
+						"bucket"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create download link",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"bucketId\": \"test\",\n\t\"fileName\": \"test.jpg\"\n}"
+				},
+				"url": {
+					"raw": "localhost:82/download",
+					"host": [
+						"localhost"
+					],
+					"port": "82",
+					"path": [
+						"download"
+					]
+				},
+				"description": "folo"
+			},
+			"response": []
+		},
+		{
+			"name": "Create upload link",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"bucketId\": \"test\",\n\t\"fileName\": \"test.jpg\"\n}"
+				},
+				"url": {
+					"raw": "localhost:82/upload",
+					"host": [
+						"localhost"
+					],
+					"port": "82",
+					"path": [
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload file",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {}
+				},
+				"url": {
+					"raw": "http://minio:9000/test/test.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=foobar%2F20200408%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200408T221756Z&X-Amz-Expires=100&X-Amz-SignedHeaders=host&X-Amz-Signature=a1271953f740fb61a77e2c6855fd25774dd15f0acc4ca882c58bc6f6cbcbeaa7",
+					"protocol": "http",
+					"host": [
+						"minio"
+					],
+					"port": "9000",
+					"path": [
+						"test",
+						"test.jpg"
+					],
+					"query": [
+						{
+							"key": "X-Amz-Algorithm",
+							"value": "AWS4-HMAC-SHA256"
+						},
+						{
+							"key": "X-Amz-Credential",
+							"value": "foobar%2F20200408%2Fus-east-1%2Fs3%2Faws4_request"
+						},
+						{
+							"key": "X-Amz-Date",
+							"value": "20200408T221756Z"
+						},
+						{
+							"key": "X-Amz-Expires",
+							"value": "100"
+						},
+						{
+							"key": "X-Amz-SignedHeaders",
+							"value": "host"
+						},
+						{
+							"key": "X-Amz-Signature",
+							"value": "a1271953f740fb61a77e2c6855fd25774dd15f0acc4ca882c58bc6f6cbcbeaa7"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

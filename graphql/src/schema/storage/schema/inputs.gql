@@ -1,0 +1,8 @@
+input InputStorage_CreateURL {
+    bucketId: String!,
+    fileName: String!
+}
+
+input InputStorage_CreateBucket {
+    bucketId: String!
+}
